@@ -2,6 +2,9 @@
 
 Generate pseudo-random text block from a vareity of predefined fragments. The results are largely random, but they are resembling lorem ipsum texts.
 
+__Example__:
+*Per facegius calaverol uti siraelo, peraetur iuficisquam ani put. Fimic ponacurtipa sapistr pecensaudea veriasum libar, quiraenes scor facelilit sila. Sunim dific putomi hab, mor repilucu peficab scedaefec morecu anira. Anitatege intide, mor leged maniceren petatobun. Omnar plegisqand sarimo ten hom, quitat dipic fipividest simag semicisqia.*
+
 ## Installation
 
 `npm install random-textblock`
