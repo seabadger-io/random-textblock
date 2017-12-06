@@ -9,6 +9,9 @@ module.exports = {
    *  maxWords: maximum number of words in a sentence
    *  minSentences: minumum number of sentences in a text block
    *  maxSentences: maximum number of sentences in a text block
+   *  terminalPunctuation: punctuation marks used to terminate sentences
+   *  punctuationMin: minimum number of words to consider adding punctuation
+   *  punctuationReq: number of words above which punctuation required
    *
    * @param {object} options
    * @return {string} random text block
@@ -23,14 +26,33 @@ module.exports = {
     const maxSentenceLength = options['maxWords'] || 15;
     const minTextLength = options['minSentences'] || 1;
     const maxTextLength = options['maxSentences'] || 3;
+    const terminalPunctuation = options['terminalPunctuation'] || '.';
+    const midPunct = {};
+    midPunct['min'] = options['punctuationMin'] || 6;
+    midPunct['req'] = options['punctuationReq'] || 9;
+
+    // function to generate random terminal punctuation
+    const termPuncFunc = (terminalPunctuation.length > 1)
+        ? () => {
+          return terminalPunctuation.charAt(
+                this._getRandom(0, terminalPunctuation.length - 1)
+              );
+        }
+        : () => {
+          return terminalPunctuation;
+        };
 
     const textLength = this._getRandom(minTextLength, maxTextLength);
 
     const sentenceList = [];
     for (let i = 0; i < textLength; i++) {
-      const sentenceLength = this._getRandom(minSentenceLength,
-          maxSentenceLength);
-      sentenceList.push(this._buildSentence(sentenceLength));
+      const sentenceLength = this._getRandom(
+            minSentenceLength,
+            maxSentenceLength
+          );
+      sentenceList.push(
+            this._buildSentence(sentenceLength, termPuncFunc, midPunct)
+          );
     }
     return sentenceList.join(' ');
   },
@@ -58,17 +80,17 @@ module.exports = {
     }
     return word;
   },
-  _buildSentence: function (length) {
+  _buildSentence: function (length, punctFunc, midPunct) {
     const wList = [];
     for (let i = 0; i < length; i++) {
       wList.push(this._buildWord());
     }
-    // adds punctuation if sentence is longer than 5 words
+    // adds punctuation if sentence is longer than `min` words
     // it may randomly skip the punctuation if it contains
-    // less than 9 words, otherwise it's required
-    this._addPunctuation(wList, 6, 9);
+    // less than `req` words, otherwise it's required
+    this._addPunctuation(wList, midPunct['min'], midPunct['req']);
     let sentence = wList.join(' ');
-    return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
+    return sentence.charAt(0).toUpperCase() + sentence.slice(1) + punctFunc();
   },
   // add punctuation around the middle of the sentence... or not
   _addPunctuation: function (wordList, minLength, reqLength) {

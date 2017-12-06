@@ -18,11 +18,18 @@ const randomText = require('random-textblock');
 console.log(randomText.getTextBlock());
 ```
 
-Optionally, you can pass an options object to `getTextBlock()` with any of the following:
-* minWords: minimum number of words in each sentence
-* maxWords: maximum number of words in each sentence
-* minSentences: minimum number of sentences in the text block
-* maxSentences: maximum number of sentences in the text block
+`getTextBlock()` options:
+**Control length of sentences and the text block:**
+* minWords: minimum number of words in each sentence. Default: 5
+* maxWords: maximum number of words in each sentence. Default: 15
+* minSentences: minimum number of sentences in the text block. Default: 1
+* maxSentences: maximum number of sentences in the text block. Default: 3
+
+**Control punctuation at the end and within the sentence:**
+* terminalPunctuation: string of characters to be randomly used as punctuation at the end of sentences. The more a character appears in the text, the higher the chance it will be used, for example to make dots dominant, use something like '........?!'. Default: '.'
+* punctuationMin: if sentence contains at least punctuationMin words, a comma might be added around the middle of the sentence. Default: 6, Minimum: 5
+* punctuationReq: if sentence contains at least punctuationReq words, a comma will be added around the middle of the sentence. Default: 9
+
 ```javascript
 const randomText = require('random-textblock');
 
@@ -36,10 +43,9 @@ const options = {
 console.log(randomText.getTextBlock(options));
 ```
 
-**Note**: if a sentence is longer, than 5 words, optionally a comma __might__ be inserted around the middle of the sentence. If the sentence is at least 9 words long, a comma __will__ be inserted around the middle of the sentence. This is currently not configurable.
-
 ## Testing
 `npm test`
 
 ## Releases
 1.0.0 Initial release
+1.1.0 Configurable punctuation
