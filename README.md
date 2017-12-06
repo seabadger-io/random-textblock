@@ -19,6 +19,7 @@ console.log(randomText.getTextBlock());
 ```
 
 `getTextBlock()` options:
+
 **Control length of sentences and the text block:**
 * minWords: minimum number of words in each sentence. Default: 5
 * maxWords: maximum number of words in each sentence. Default: 15
