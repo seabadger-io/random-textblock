@@ -48,5 +48,5 @@ console.log(randomText.getTextBlock(options));
 `npm test`
 
 ## Releases
-1.0.0 Initial release
-1.1.0 Configurable punctuation
+* 1.0.0 Initial release
+* 1.1.0 Configurable punctuation
