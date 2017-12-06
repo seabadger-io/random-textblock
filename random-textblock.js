@@ -28,7 +28,8 @@ module.exports = {
 
     const sentenceList = [];
     for (let i = 0; i < textLength; i++) {
-      const sentenceLength = this._getRandom(minSentenceLength, maxSentenceLength);
+      const sentenceLength = this._getRandom(minSentenceLength,
+          maxSentenceLength);
       sentenceList.push(this._buildSentence(sentenceLength));
     }
     return sentenceList.join(' ');
@@ -63,7 +64,8 @@ module.exports = {
       wList.push(this._buildWord());
     }
     // adds punctuation if sentence is longer than 5 words
-    // it may randomly skip the punctuation if it contains less than 9 words, otherwise it's required
+    // it may randomly skip the punctuation if it contains
+    // less than 9 words, otherwise it's required
     this._addPunctuation(wList, 6, 9);
     let sentence = wList.join(' ');
     return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
@@ -83,5 +85,5 @@ module.exports = {
   _getRandom: function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
-  __v: ['a','e','i','o','u']
+  __v: ['a', 'e', 'i', 'o', 'u']
 };
