@@ -27,7 +27,7 @@ __`getTextBlock()` options__:
 * _maxSentences_: maximum number of sentences in the text block. Default: 3
 
 **Control punctuation at the end and mid the sentences:**
-* _terminalPunctuation_: string of characters to be randomly used as punctuation at the end of sentences. The more a character appears in the text, the higher the chance it will be used, for example to make dots dominant, use something like '........?!'. Default: '.'
+* _terminalPunctuation_: string of characters to be randomly used as punctuation at the end of sentences. The more often a character appears in the string, the higher the chance it will be used, for example to make dots dominant, use something like '........?!'. Default: '.'
 * _punctuationMin_: if sentence contains at least punctuationMin words, a comma might be added around the middle of the sentence. Default: 6, Minimum: 5
 * _punctuationReq_: if sentence contains at least punctuationReq words, a comma will be added around the middle of the sentence. Default: 9
 
