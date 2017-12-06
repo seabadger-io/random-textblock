@@ -1,6 +1,6 @@
 {
   "name": "random-textblock",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate random textblock which resembles lorem ipsum texts",
   "main": "random-textblock.js",
   "scripts": {
