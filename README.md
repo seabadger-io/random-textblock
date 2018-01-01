@@ -22,9 +22,9 @@ __`getTextBlock()` options__:
 
 **Control length of sentences and of the text block:**
 * _minWords_: minimum number of words in each sentence. Default: 5
-* _maxWords_: maximum number of words in each sentence. Default: 15
+* _maxWords_: maximum number of words in each sentence. Default: minWords + 10
 * _minSentences_: minimum number of sentences in the text block. Default: 1
-* _maxSentences_: maximum number of sentences in the text block. Default: 3
+* _maxSentences_: maximum number of sentences in the text block. Default: minSenteces + 3
 
 **Control punctuation at the end and mid the sentences:**
 * _terminalPunctuation_: string of characters to be randomly used as punctuation at the end of sentences. The more often a character appears in the string, the higher the chance it will be used, for example to make dots dominant, use something like '........?!'. Default: '.'

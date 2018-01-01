@@ -26,6 +26,15 @@ describe('random-textblock.getTextBlock', function () {
     expect(sentences).to.have.lengthOf(3);
     done();
   });
+  it('generates minSentences if maxSentences < minSentences', function (done) {
+    const options = { minSentences: 3, maxSentences: 1 };
+    const restoreWarn = console.warn;
+    console.warn = function () {};
+    const sentences = randomText.getTextBlock(options).replace(/[^\.]/g, '');
+    console.warn = restoreWarn;
+    expect(sentences).to.have.lengthOf(3);
+    done();
+  });
   it('adds punctuation if requested', function (done) {
     const options = {
       minWords: 10,

@@ -18,14 +18,15 @@ module.exports = {
    */
   getTextBlock: function (options = {}) {
     if (typeof options !== 'object' || options === null) options = {};
+    this._sanitizeOptions(options);
     /**
      * xSentenceLength: minumum/maximum number of words in a sentence
      * xTextLength: min/max number of sentences in a text block
      */
     const minSentenceLength = options['minWords'] || 5;
-    const maxSentenceLength = options['maxWords'] || 15;
+    const maxSentenceLength = options['maxWords'] || minSentenceLength + 10;
     const minTextLength = options['minSentences'] || 1;
-    const maxTextLength = options['maxSentences'] || 3;
+    const maxTextLength = options['maxSentences'] || minTextLength + 3;
     const terminalPunctuation = options['terminalPunctuation'] || '.';
     const midPunct = {};
     midPunct['min'] = options['punctuationMin'] || 6;
@@ -106,6 +107,16 @@ module.exports = {
   },
   _getRandom: function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+  _sanitizeOptions: function (options) {
+    if ('maxWords' in options && options['minWords'] > options['maxWords']) {
+      console.warn('Warning! minWords > maxWords, increasing value of maxWords');
+      options['maxWords'] = options['minWords'];
+    }
+    if ('maxSentences' in options && options['minSentences'] > options['maxSentences']) {
+      console.warn('Warning! minSentences > maxSentences, increasing value of maxSentences');
+      options['maxSentences'] = options['minSentences'];
+    }
   },
   __v: ['a', 'e', 'i', 'o', 'u']
 };
